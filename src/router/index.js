@@ -1,13 +1,13 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
 import Posts from "../components/Posts/Posts.vue"
+import PostDetail from "../components/Posts/PostDetail.vue"
 import CalculatorView from "../views/CalculatorView.vue"
 import CreatePostView from "../views/CreatePostView.vue"
 import HomeView from "../views/HomeView.vue"
 import PostsView from "../views/PostsView.vue"
-import UpdatePostView from "../views/UpdatePostView.vue"
-import UserView from "../views/UserView.vue"
 import TodoListView from "../views/TodoListView.vue"
+import UpdatePostView from "../views/UpdatePostView.vue"
 
 Vue.use(VueRouter)
 
@@ -16,11 +16,6 @@ const routes = [
         path: "/",
         name: "home",
         component: HomeView,
-    },
-    {
-        path: "/user",
-        name: "user",
-        component: UserView,
     },
     {
         path: "/todos",
@@ -40,6 +35,10 @@ const routes = [
             {
                 path: "",
                 component: Posts,
+            },
+            {
+                path: ":postId",
+                component: PostDetail,
             },
             {
                 path: "create",

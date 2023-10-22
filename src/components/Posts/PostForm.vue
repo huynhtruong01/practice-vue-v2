@@ -1,28 +1,17 @@
 <template>
   <form class="form-container" v-on:submit.prevent="handleSubmitPost">
     <div class="field">
-      <label for="title">Title</label>
-      <input
-        type="text"
-        id="title"
-        placeholder="Enter title..."
-        v-model="title"
-      />
+      <label for="title" v-bind:class="{ error: errorTitle }">Title</label>
+      <input v-bind:class="{ error: errorTitle }" type="text" id="title" placeholder="Enter title..." v-model="title" />
+      <p class="error" v-if="errorTitle">{{ errorTitle }}</p>
     </div>
     <div class="field">
-      <label for="title">Description</label>
-      <input
-        type="text"
-        id="description"
-        placeholder="Enter description..."
-        v-model="description"
-      />
+      <label for="title" v-bind:class="{ error: errorDescription }">Description</label>
+      <textarea v-bind:class="{ error: errorDescription }" type="text" id="description" rows="8"
+        placeholder="Enter description..." v-model="description"></textarea>
+      <p class="error" v-if="errorDescription">{{ errorDescription }}</p>
     </div>
-    <button
-      type="submit"
-      class="btn-submit"
-      v-bind:disabled="!isValidForm || isLoading"
-    >
+    <button type="submit" class="btn-submit" v-bind:disabled="!isValidForm || isLoading">
       <span v-if="!isLoading">{{ id ? "Update Post" : "+ Create Post" }}</span>
       <span v-if="isLoading">Loading...</span>
     </button>
@@ -38,17 +27,35 @@ export default {
     return {
       title: "",
       description: "",
+      errorTitle: '',
+      errorDescription: '',
       isLoading: false,
     }
   },
   async mounted() {
-    console.log(this.id)
     await this.getPost()
   },
   computed: {
     isValidForm() {
       return Boolean(this.title && this.description)
     },
+  },
+  watch: {
+    title(newVal) {
+      if (!newVal) {
+        this.errorTitle = 'Please enter title'
+      } else {
+        this.errorTitle = ''
+      }
+
+    },
+    description(newVal) {
+      if (!newVal) {
+        this.errorDescription = 'Please enter description'
+      } else {
+        this.errorDescription = ''
+      }
+    }
   },
   methods: {
     async getPost() {
@@ -118,23 +125,35 @@ export default {
 
   label {
     margin-bottom: 4px;
+    font-weight: 500;
+    font-size: 14px;
+
+    &.error {
+      color: #d80032;
+    }
   }
 
-  input {
-    padding: 8px;
+  input,
+  textarea {
+    padding: 10px;
     border-radius: 4px;
     border: 1px solid #dbdfea;
     font-size: 16px;
+
+    &.error {
+      border: 1px solid #d80032;
+      color: #d80032;
+    }
   }
 }
 
 .btn-submit {
-  padding: 8px 16px;
+  padding: 12px 16px;
   width: 100%;
   color: #fff;
   background-color: #d80032;
   border-radius: 4px;
-  margin-top: 12px;
+  margin-top: 20px;
   font-weight: 500;
   opacity: 1;
 }
@@ -142,5 +161,11 @@ export default {
 .btn-submit:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.error {
+  color: #d80032;
+  font-size: 14px;
+  padding-left: 4px;
 }
 </style>

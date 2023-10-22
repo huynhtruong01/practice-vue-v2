@@ -2,7 +2,7 @@
     <header class="header">
         <div class="container">
             <div class="logo">
-                <router-link to="/">Logo</router-link>
+                <router-link to="/">Coding</router-link>
             </div>
             <nav>
                 <ul class="nav-links">
@@ -27,10 +27,6 @@ export default {
                 {
                     name: "Posts",
                     link: "/posts",
-                },
-                {
-                    name: "User",
-                    link: "/user",
                 },
                 {
                     name: "Todos",
@@ -67,7 +63,6 @@ export default {
 .logo {
     font-weight: 700;
     font-size: 24px;
-    color: #45474b;
 }
 
 .nav-links {

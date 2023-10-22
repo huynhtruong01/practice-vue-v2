@@ -1,11 +1,11 @@
 <template>
     <div class="container">
-        <TodoItem v-for="todo in [...store.state.todoStore.todoList]" v-bind:key="todo.id" v-bind:todo="todo" />
+        <TodoItem v-for="todo in todoList" v-bind:key="todo.id" v-bind:todo="todo" />
     </div>
 </template>
 
 <script>
-import store from "../../store"
+import { mapState } from "vuex";
 import TodoItem from "./TodoItem.vue"
 
 export default {
@@ -13,16 +13,14 @@ export default {
     components: {
         TodoItem,
     },
-    setup() {
-        return {
-            store
-        }
-    },
     data() {
         return {
             todoEdit: ''
         }
     },
+    computed: mapState({
+        todoList: state => state.todoStore.todoList
+    })
 }
 </script>
 

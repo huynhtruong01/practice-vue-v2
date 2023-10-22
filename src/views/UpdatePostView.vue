@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import PostForm from "../components/Form/PostForm.vue"
+import PostForm from "../components/Posts/PostForm.vue"
 
 export default {
   name: "update-form-view",

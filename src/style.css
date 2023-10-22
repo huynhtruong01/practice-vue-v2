@@ -47,9 +47,11 @@ label {
     display: inline-block;
 }
 
+textarea,
 input {
     display: block;
     width: 100%;
     outline: none;
     border: none;
+    font-family: Poppins, sans-serif;
 }

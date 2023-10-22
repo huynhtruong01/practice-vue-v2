@@ -1,7 +1,9 @@
 <template>
   <div class="post">
     <div>
-      <h3 v-on:click="triggerEvent">{{ post.title }}</h3>
+      <h3 v-on:click="triggerEvent">
+        <router-link v-bind:to="`/posts/${post.id}`">{{ post.title }}</router-link>
+      </h3>
       <p>{{ post.description }}</p>
     </div>
     <div class="btns">

@@ -1,13 +1,15 @@
-import { createLogger, createStore } from "vuex"
-import userStore from "./userStore"
+import Vuex from "vuex"
 import todoStore from "./todoStore"
+import userStore from "./userStore"
+import Vue from "vue"
 
-const store = createStore({
+Vue.use(Vuex)
+
+const store = new Vuex.Store({
     modules: {
         userStore,
         todoStore,
     },
-    plugins: [createLogger()],
 })
 
 export default store

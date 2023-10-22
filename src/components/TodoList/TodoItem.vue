@@ -21,7 +21,6 @@
 
 <script>
 import { formatDate } from "../../utils"
-import store from "../../store"
 import TodoBus from '../../emits/TodoBus'
 
 export default {
@@ -30,7 +29,6 @@ export default {
     setup() {
         return {
             formatDate,
-            store,
         }
     },
     data() {
@@ -43,7 +41,7 @@ export default {
     },
     methods: {
         handleCheckedTodo() {
-            this.store.dispatch('todoStore/updateTodo', {
+            this.$store.dispatch('todoStore/updateTodo', {
                 id: this.todo.id,
                 name: this.todo.name,
                 createdAt: this.todo.createdAt,
@@ -54,7 +52,7 @@ export default {
             TodoBus.$emit('todo-update', this.todo)
         },
         handleDeleteTodo() {
-            this.store.dispatch('todoStore/deleteTodo', this.todo.id)
+            this.$store.dispatch('todoStore/deleteTodo', this.todo.id)
         }
     },
 }
@@ -71,7 +69,8 @@ export default {
     margin-bottom: 12px;
 
     &.complete {
-        opacity: 0.5;
+        opacity: 0.7;
+
     }
 
     .inner-left {

@@ -9,16 +9,10 @@
 </template>
 
 <script>
-import store from "../../store"
 import TodoBus from "../../emits/TodoBus"
 
 export default {
     name: "todo-form",
-    setup() {
-        return {
-            store,
-        }
-    },
     data() {
         return {
             todoName: "",
@@ -34,13 +28,13 @@ export default {
     methods: {
         addTodo() {
             if (this.todoName) {
-                this.store.dispatch('todoStore/addTodo', {
+                this.$store.dispatch('todoStore/addTodo', {
                     name: this.todoName,
                 })
             }
         },
         updateTodo() {
-            this.store.dispatch('todoStore/updateTodo', {
+            this.$store.dispatch('todoStore/updateTodo', {
                 ...this.todo,
                 name: this.todoName
             })
